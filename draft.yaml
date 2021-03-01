@@ -1,0 +1,37 @@
+models:
+  Country:
+    id
+    title: string:200:unique
+    softDeletes
+    timestamps
+
+  State:
+    id
+    country_id: id foreign:countries
+    title: string:200:unique
+    softDeletes
+    timestamps
+    relationships:
+      hasMany: City
+      belongsToMany: Country
+
+  City:
+    id
+    state_id: id foreign:states
+    title: string:200:unique
+    softDeletes
+    timestamps
+    relationships:
+      belongsToMany: State
+
+seeders: Country, State, City
+
+controllers:
+  Api\Country:
+    resource: api 
+
+  Api\State:
+    resource: api 
+
+  Api\City:
+    resource: api
