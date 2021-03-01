@@ -3,6 +3,10 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
+use App\Http\Controllers\Api\CountryController;
+use App\Http\Controllers\Api\StateController;
+use App\Http\Controllers\Api\CityController;
+
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -19,15 +23,10 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 
-Route::apiResource('country', 'Api\CountryController');
+Route::apiResource('country', CountryController::class);
 
-Route::apiResource('state', 'Api\StateController');
+Route::apiResource('state', StateController::class);
 
-Route::apiResource('city', 'Api\CityController');
+Route::apiResource('city', CityController::class);
 
 
-Route::apiResource('country', 'Api\CountryController');
-
-Route::apiResource('state', 'Api\StateController');
-
-Route::apiResource('city', 'Api\CityController');
