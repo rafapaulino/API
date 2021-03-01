@@ -40,14 +40,6 @@ class State extends Model
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
-     */
-    public function countries()
-    {
-        return $this->belongsToMany(\App\Models\Country::class);
-    }
-
-    /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
     public function country()

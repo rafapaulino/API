@@ -5,11 +5,9 @@ created:
     - database/factories/CountryFactory.php
     - database/factories/StateFactory.php
     - database/factories/CityFactory.php
-    - database/migrations/2021_03_01_141004_create_countries_table.php
-    - database/migrations/2021_03_01_141005_create_states_table.php
-    - database/migrations/2021_03_01_141006_create_cities_table.php
-    - database/migrations/2021_03_01_141007_create_country_state_table.php
-    - database/migrations/2021_03_01_141008_create_city_state_table.php
+    - database/migrations/2021_03_01_142051_create_countries_table.php
+    - database/migrations/2021_03_01_142052_create_states_table.php
+    - database/migrations/2021_03_01_142053_create_cities_table.php
     - app/Models/Country.php
     - app/Models/State.php
     - app/Models/City.php
@@ -34,6 +32,7 @@ created:
 updated:
     - routes/api.php
 models:
-    Country: { id: id, title: 'string:200:unique', softdeletes: softDeletes, timestamps: timestamps }
-    State: { id: id, country_id: 'id foreign:countries', title: 'string:200:unique', softdeletes: softDeletes, timestamps: timestamps, relationships: { hasMany: City, belongsToMany: Country } }
-    City: { id: id, state_id: 'id foreign:states', title: 'string:200:unique', softdeletes: softDeletes, timestamps: timestamps, relationships: { belongsToMany: State } }
+    Models\User: { name: 'string:191', email: 'string:191', email_verified_at: 'datetime nullable', password: 'string:191', remember_token: 'string:100 nullable' }
+    Country: { id: id, title: 'string:200:unique', softdeletes: softDeletes, timestamps: timestamps, relationships: { hasMany: State } }
+    State: { id: id, country_id: 'id foreign:countries', title: 'string:200:unique', softdeletes: softDeletes, timestamps: timestamps, relationships: { hasMany: City } }
+    City: { id: id, state_id: 'id foreign:states', title: 'string:200:unique', softdeletes: softDeletes, timestamps: timestamps }

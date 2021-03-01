@@ -32,14 +32,6 @@ class City extends Model
 
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
-     */
-    public function states()
-    {
-        return $this->belongsToMany(\App\Models\State::class);
-    }
-
-    /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
     public function state()

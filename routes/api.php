@@ -24,3 +24,10 @@ Route::apiResource('country', 'Api\CountryController');
 Route::apiResource('state', 'Api\StateController');
 
 Route::apiResource('city', 'Api\CityController');
+
+
+Route::apiResource('country', 'Api\CountryController');
+
+Route::apiResource('state', 'Api\StateController');
+
+Route::apiResource('city', 'Api\CityController');

@@ -27,4 +27,13 @@ class Country extends Model
     protected $casts = [
         'id' => 'integer',
     ];
+
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function states()
+    {
+        return $this->hasMany(\App\Models\State::class);
+    }
 }

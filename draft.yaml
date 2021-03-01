@@ -4,6 +4,8 @@ models:
     title: string:200:unique
     softDeletes
     timestamps
+    relationships:
+      hasMany: State
 
   State:
     id
@@ -13,7 +15,6 @@ models:
     timestamps
     relationships:
       hasMany: City
-      belongsToMany: Country
 
   City:
     id
@@ -21,8 +22,6 @@ models:
     title: string:200:unique
     softDeletes
     timestamps
-    relationships:
-      belongsToMany: State
 
 seeders: Country, State, City
 
