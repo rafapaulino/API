@@ -21,6 +21,9 @@ Essa aplicação utiliza pacotes abaixo:
 
 Laravel is accessible, powerful, and provides tools required for large, robust applications.
 
+Para testar o projeto utilize:
+php artisan test
+
 ## Learning Laravel
 
 Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.

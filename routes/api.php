@@ -29,4 +29,3 @@ Route::apiResource('state', StateController::class);
 
 Route::apiResource('city', CityController::class);
 
-

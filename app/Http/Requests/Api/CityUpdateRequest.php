@@ -25,7 +25,7 @@ class CityUpdateRequest extends FormRequest
     {
         return [
             'state_id' => ['required', 'integer', 'exists:states,id'],
-            'title' => ['required', 'string', 'max:200'],
+            'title' => ['required', 'string', 'max:200', 'unique:cities,title'],
         ];
     }
 }

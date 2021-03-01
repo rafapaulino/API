@@ -1,7 +1,7 @@
 models:
   Country:
     id
-    title: string:200:unique
+    title: string:200 
     softDeletes
     timestamps
     relationships:
@@ -10,7 +10,7 @@ models:
   State:
     id
     country_id: id foreign:countries
-    title: string:200:unique
+    title: string:200 
     softDeletes
     timestamps
     relationships:
@@ -19,7 +19,7 @@ models:
   City:
     id
     state_id: id foreign:states
-    title: string:200:unique
+    title: string:200 
     softDeletes
     timestamps
 

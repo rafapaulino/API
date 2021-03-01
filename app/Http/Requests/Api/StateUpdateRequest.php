@@ -25,7 +25,7 @@ class StateUpdateRequest extends FormRequest
     {
         return [
             'country_id' => ['required', 'integer', 'exists:countries,id'],
-            'title' => ['required', 'string', 'max:200'],
+            'title' => ['required', 'string', 'max:200', 'unique:states,title'],
         ];
     }
 }
