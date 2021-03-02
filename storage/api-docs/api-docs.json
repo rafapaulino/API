@@ -23,50 +23,6 @@
                     }
                 }
             },
-            "put": {
-                "tags": [
-                    "city.update"
-                ],
-                "operationId": "update",
-                "parameters": [
-                    {
-                        "name": "id",
-                        "in": "path",
-                        "description": "Id da cidade",
-                        "required": true,
-                        "schema": {
-                            "type": "integer"
-                        }
-                    }
-                ],
-                "requestBody": {
-                    "description": "Parâmetros para atualizar a cidade",
-                    "content": {
-                        "application/x-www-form-urlencoded": {
-                            "schema": {
-                                "properties": {
-                                    "title": {
-                                        "description": "Atualiza o nome da cidade",
-                                        "type": "string"
-                                    }
-                                },
-                                "type": "object"
-                            }
-                        }
-                    }
-                },
-                "responses": {
-                    "400": {
-                        "description": "Parâmetro inválido"
-                    },
-                    "404": {
-                        "description": "cidade não encontrada"
-                    },
-                    "405": {
-                        "description": "Erro de validação"
-                    }
-                }
-            },
             "post": {
                 "tags": [
                     "city.store"
@@ -74,28 +30,26 @@
                 "summary": "Adiciona uma cidade ao banco",
                 "description": "Adiciona uma cidade ao banco, é necessário informar o nome da cidade e o id do estado",
                 "operationId": "store",
-                "parameters": [
-                    {
-                        "name": "title",
-                        "in": "path",
-                        "description": "Informe o nome da cidade",
-                        "required": true,
-                        "schema": {
-                            "type": "string",
-                            "maximum": 200,
-                            "minimum": 1
-                        }
-                    },
-                    {
-                        "name": "id",
-                        "in": "path",
-                        "description": "Informe o id do estado",
-                        "required": true,
-                        "schema": {
-                            "type": "integer"
+                "requestBody": {
+                    "description": "Parâmetros para adicionar a cidade",
+                    "content": {
+                        "application/x-www-form-urlencoded": {
+                            "schema": {
+                                "properties": {
+                                    "title": {
+                                        "description": "Nome da cidade",
+                                        "type": "string"
+                                    },
+                                    "state_id": {
+                                        "description": "Id do estado que a cidade pertence",
+                                        "type": "integer"
+                                    }
+                                },
+                                "type": "object"
+                            }
                         }
                     }
-                ],
+                },
                 "responses": {
                     "200": {
                         "description": "Retorna o json com a cidade adicionada"
@@ -116,7 +70,7 @@
                 "operationId": "show",
                 "parameters": [
                     {
-                        "name": "id",
+                        "name": "city",
                         "in": "path",
                         "description": "Id da cidade",
                         "required": true,
@@ -137,6 +91,54 @@
                     }
                 }
             },
+            "put": {
+                "tags": [
+                    "city.update"
+                ],
+                "operationId": "update",
+                "parameters": [
+                    {
+                        "name": "city",
+                        "in": "path",
+                        "description": "Id da cidade",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "description": "Parâmetros para atualizar a cidade",
+                    "content": {
+                        "application/x-www-form-urlencoded": {
+                            "schema": {
+                                "properties": {
+                                    "title": {
+                                        "description": "Atualiza o nome da cidade",
+                                        "type": "string"
+                                    },
+                                    "state_id": {
+                                        "description": "Atualiza o estado que a cidade pertence",
+                                        "type": "integer"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "400": {
+                        "description": "Parâmetro inválido"
+                    },
+                    "404": {
+                        "description": "cidade não encontrada"
+                    },
+                    "405": {
+                        "description": "Erro de validação"
+                    }
+                }
+            },
             "delete": {
                 "tags": [
                     "city.destroy"
@@ -146,7 +148,7 @@
                 "operationId": "destroy",
                 "parameters": [
                     {
-                        "name": "id",
+                        "name": "city",
                         "in": "path",
                         "description": "ID da cidade que será deletada",
                         "required": true,

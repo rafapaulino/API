@@ -41,24 +41,23 @@ class CityController extends Controller
      *     operationId="store",
      *     summary="Adiciona uma cidade ao banco",
      *     description="Adiciona uma cidade ao banco, é necessário informar o nome da cidade e o id do estado",
-     *     @OA\Parameter(
-     *         name="title",
-     *         in="path",
-     *         description="Informe o nome da cidade",
-     *         required=true,
-     *         @OA\Schema(
-     *             type="string",
-     *             maximum=200,
-     *             minimum=1
-     *         )
-     *     ),
-     *     @OA\Parameter(
-     *         name="id",
-     *         in="path",
-     *         description="Informe o id do estado",
-     *         required=true,
-     *         @OA\Schema(
-     *             type="integer"
+     *     @OA\RequestBody(
+     *         description="Parâmetros para adicionar a cidade",
+     *         @OA\MediaType(
+     *             mediaType="application/x-www-form-urlencoded",
+     *             @OA\Schema(
+     *                 type="object",
+     *                 @OA\Property(
+     *                     property="title",
+     *                     description="Nome da cidade",
+     *                     type="string",
+     *                 ),
+     *                 @OA\Property(
+     *                     property="state_id",
+     *                     description="Id do estado que a cidade pertence",
+     *                     type="integer",
+     *                 )
+     *             )
      *         )
      *     ),
      *     @OA\Response(
@@ -93,7 +92,7 @@ class CityController extends Controller
      *     @OA\Parameter(
      *         description="Id da cidade",
      *         in="path",
-     *         name="id",
+     *         name="city",
      *         required=true,
      *         @OA\Schema(
      *           type="integer"
@@ -126,13 +125,13 @@ class CityController extends Controller
 
     /**
      * @OA\Put(
-     *     path="/api/city",
+     *     path="/api/city/{city}",
      *     tags={"city.update"},
      *     operationId="update",
      *     @OA\Parameter(
      *         description="Id da cidade",
      *         in="path",
-     *         name="id",
+     *         name="city",
      *         required=true,
      *         @OA\Schema(
      *           type="integer"
@@ -148,6 +147,11 @@ class CityController extends Controller
      *                     property="title",
      *                     description="Atualiza o nome da cidade",
      *                     type="string",
+     *                 ),
+     *                 @OA\Property(
+     *                     property="state_id",
+     *                     description="Atualiza o estado que a cidade pertence",
+     *                     type="integer",
      *                 )
      *             )
      *         )
@@ -187,7 +191,7 @@ class CityController extends Controller
      *     description="Recebe o id como integer e deleta a cidade no banco",
      *     operationId="destroy",
      *     @OA\Parameter(
-     *         name="id",
+     *         name="city",
      *         in="path",
      *         required=true,
      *         description="ID da cidade que será deletada",

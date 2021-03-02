@@ -19,6 +19,8 @@ Essa aplicação utiliza pacotes abaixo:
 
 Todos os [endpoints](http://localhost/api/public/api/documentation) da api estão documentados com Swagger no endereço {url do projeto}/api/documentation.
 
+Atenção: Mudar o parâmetro @OA\Server(url="http://localhost/api/public/") dentro do Controller base do Laravel.
+
 ## Testes
 
 Para testar o projeto utilize:
