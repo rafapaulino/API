@@ -41,15 +41,18 @@ class CountryController extends Controller
      *     operationId="store",
      *     summary="Adiciona um país",
      *     description="Adiciona um país ao banco, é necessário informar o nome do país",
-     *     @OA\Parameter(
-     *         name="title",
-     *         in="path",
-     *         description="Informe o nome do país",
-     *         required=true,
-     *         @OA\Schema(
-     *             type="string",
-     *             maximum=200,
-     *             minimum=1
+     *     @OA\RequestBody(
+     *         description="Parâmetros para adicionar o país",
+     *         @OA\MediaType(
+     *             mediaType="application/x-www-form-urlencoded",
+     *             @OA\Schema(
+     *                 type="object",
+     *                 @OA\Property(
+     *                     property="title",
+     *                     description="Adiciona o país",
+     *                     type="string",
+     *                 )
+     *             )
      *         )
      *     ),
      *     @OA\Response(
@@ -83,7 +86,7 @@ class CountryController extends Controller
      *     @OA\Parameter(
      *         description="Id do país",
      *         in="path",
-     *         name="id",
+     *         name="country",
      *         required=true,
      *         @OA\Schema(
      *           type="integer",
@@ -117,13 +120,13 @@ class CountryController extends Controller
 
     /**
      * @OA\Put(
-     *     path="/api/country",
+     *     path="/api/country/{country}",
      *     tags={"country.update"},
      *     operationId="update",
      *     @OA\Parameter(
      *         description="Id do país",
      *         in="path",
-     *         name="id",
+     *         name="country",
      *         required=true,
      *         @OA\Schema(
      *           type="integer",
@@ -178,7 +181,7 @@ class CountryController extends Controller
      *     description="Recebe o id como integer e deleta o país no banco",
      *     operationId="destroy",
      *     @OA\Parameter(
-     *         name="id",
+     *         name="country",
      *         in="path",
      *         required=true,
      *         description="ID do país que será deletado",

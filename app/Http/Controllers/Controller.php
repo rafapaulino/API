@@ -12,6 +12,7 @@ use Illuminate\Routing\Controller as BaseController;
  *    title="API de países, estados e cidades",
  *    version="1.0.0",
  * )
+ * @OA\Server(url="http://localhost/api/public/")
  */
 
 class Controller extends BaseController

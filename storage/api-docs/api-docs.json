@@ -4,7 +4,167 @@
         "title": "API de países, estados e cidades",
         "version": "1.0.0"
     },
+    "servers": [
+        {
+            "url": "http://localhost/api/public/"
+        }
+    ],
     "paths": {
+        "/api/city": {
+            "get": {
+                "tags": [
+                    "city.index"
+                ],
+                "summary": "Retorna a lista de cidades",
+                "description": "Retorna a lista de cidades",
+                "responses": {
+                    "200": {
+                        "description": "Lista de cidades"
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "city.update"
+                ],
+                "operationId": "update",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Id da cidade",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "description": "Parâmetros para atualizar a cidade",
+                    "content": {
+                        "application/x-www-form-urlencoded": {
+                            "schema": {
+                                "properties": {
+                                    "title": {
+                                        "description": "Atualiza o nome da cidade",
+                                        "type": "string"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "400": {
+                        "description": "Parâmetro inválido"
+                    },
+                    "404": {
+                        "description": "cidade não encontrada"
+                    },
+                    "405": {
+                        "description": "Erro de validação"
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "city.store"
+                ],
+                "summary": "Adiciona uma cidade ao banco",
+                "description": "Adiciona uma cidade ao banco, é necessário informar o nome da cidade e o id do estado",
+                "operationId": "store",
+                "parameters": [
+                    {
+                        "name": "title",
+                        "in": "path",
+                        "description": "Informe o nome da cidade",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "maximum": 200,
+                            "minimum": 1
+                        }
+                    },
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Informe o id do estado",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Retorna o json com a cidade adicionada"
+                    },
+                    "405": {
+                        "description": "Requisição inválida"
+                    }
+                }
+            }
+        },
+        "/api/city/{city}": {
+            "get": {
+                "tags": [
+                    "city.show"
+                ],
+                "summary": "Mostra uma cidade pelo id",
+                "description": "Retorna uma cidade pelo id",
+                "operationId": "show",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Id da cidade",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Sucesso"
+                    },
+                    "400": {
+                        "description": "ID inválido fornecido"
+                    },
+                    "404": {
+                        "description": "Cidade não encontrada"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "city.destroy"
+                ],
+                "summary": "Deleta a cidade pelo id",
+                "description": "Recebe o id como integer e deleta a cidade no banco",
+                "operationId": "destroy",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID da cidade que será deletada",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "400": {
+                        "description": "Parâmetro inválido"
+                    },
+                    "404": {
+                        "description": "cidade não encontrada"
+                    }
+                }
+            }
+        },
         "/api/country": {
             "get": {
                 "tags": [
@@ -18,6 +178,71 @@
                     }
                 }
             },
+            "post": {
+                "tags": [
+                    "country.store"
+                ],
+                "summary": "Adiciona um país",
+                "description": "Adiciona um país ao banco, é necessário informar o nome do país",
+                "operationId": "store",
+                "requestBody": {
+                    "description": "Parâmetros para adicionar o país",
+                    "content": {
+                        "application/x-www-form-urlencoded": {
+                            "schema": {
+                                "properties": {
+                                    "title": {
+                                        "description": "Adiciona o país",
+                                        "type": "string"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Retorna o json com o país adicionado"
+                    },
+                    "405": {
+                        "description": "Requisição inválida"
+                    }
+                }
+            }
+        },
+        "/api/country/{country}": {
+            "get": {
+                "tags": [
+                    "country.show"
+                ],
+                "summary": "Mostra um país pelo id",
+                "description": "Retorna um país pelo id",
+                "operationId": "show",
+                "parameters": [
+                    {
+                        "name": "country",
+                        "in": "path",
+                        "description": "Id do país",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Sucesso"
+                    },
+                    "400": {
+                        "description": "ID inválido fornecido"
+                    },
+                    "404": {
+                        "description": "País não encontrado"
+                    }
+                }
+            },
             "put": {
                 "tags": [
                     "country.update"
@@ -25,7 +250,7 @@
                 "operationId": "update",
                 "parameters": [
                     {
-                        "name": "id",
+                        "name": "country",
                         "in": "path",
                         "description": "Id do país",
                         "required": true,
@@ -63,68 +288,6 @@
                     }
                 }
             },
-            "post": {
-                "tags": [
-                    "country.store"
-                ],
-                "summary": "Adiciona um país",
-                "description": "Adiciona um país ao banco, é necessário informar o nome do país",
-                "operationId": "store",
-                "parameters": [
-                    {
-                        "name": "title",
-                        "in": "path",
-                        "description": "Informe o nome do país",
-                        "required": true,
-                        "schema": {
-                            "type": "string",
-                            "maximum": 200,
-                            "minimum": 1
-                        }
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "Retorna o json com o país adicionado"
-                    },
-                    "405": {
-                        "description": "Requisição inválida"
-                    }
-                }
-            }
-        },
-        "/api/country/{country}": {
-            "get": {
-                "tags": [
-                    "country.show"
-                ],
-                "summary": "Mostra um país pelo id",
-                "description": "Retorna um país pelo id",
-                "operationId": "show",
-                "parameters": [
-                    {
-                        "name": "id",
-                        "in": "path",
-                        "description": "Id do país",
-                        "required": true,
-                        "schema": {
-                            "type": "integer",
-                            "format": "int64"
-                        }
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "Sucesso"
-                    },
-                    "400": {
-                        "description": "ID inválido fornecido"
-                    },
-                    "404": {
-                        "description": "País não encontrado"
-                    }
-                }
-            },
             "delete": {
                 "tags": [
                     "country.destroy"
@@ -134,7 +297,7 @@
                 "operationId": "destroy",
                 "parameters": [
                     {
-                        "name": "id",
+                        "name": "country",
                         "in": "path",
                         "description": "ID do país que será deletado",
                         "required": true,

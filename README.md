@@ -27,6 +27,7 @@ php artisan test
 ## Para rodar o projeto execute
 
 composer install
-php artisan migrate
-php artisan db:seeder
 
+php artisan migrate
+
+php artisan db:seeder
