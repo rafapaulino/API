@@ -1,0 +1,88 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "API de países, estados e cidades",
+        "version": "1.0.0"
+    },
+    "paths": {
+        "/api/country": {
+            "get": {
+                "tags": [
+                    "country.index"
+                ],
+                "summary": "Retorna a lista de países",
+                "description": "Retorna a lista de países",
+                "responses": {
+                    "200": {
+                        "description": "Lista de países"
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "country.store"
+                ],
+                "summary": "Adiciona um país",
+                "description": "Adiciona um país ao banco, é necessário informar o nome do país",
+                "operationId": "store",
+                "parameters": [
+                    {
+                        "name": "title",
+                        "in": "path",
+                        "description": "Informe o nome do país",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "maximum": 200,
+                            "minimum": 1
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Retorna o json com o país adicionado"
+                    },
+                    "405": {
+                        "description": "Requisição inválida"
+                    }
+                }
+            }
+        },
+        "/api/country/{country}": {
+            "get": {
+                "tags": [
+                    "country.show"
+                ],
+                "summary": "Mostra um país pelo id",
+                "description": "Retorna um país pelo id",
+                "operationId": "show",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Id do país",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Sucesso"
+                    },
+                    "400": {
+                        "description": "ID inválido fornecido"
+                    },
+                    "404": {
+                        "description": "País não encontrado"
+                    }
+                }
+            }
+        }
+    },
+    "security": [
+        []
+    ]
+}

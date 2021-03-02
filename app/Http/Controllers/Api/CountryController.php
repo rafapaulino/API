@@ -13,6 +13,16 @@ use Illuminate\Http\Request;
 class CountryController extends Controller
 {
     /**
+     * @OA\Get(
+     *     tags={"country.index"},
+     *     summary="Retorna a lista de países",
+     *     description="Retorna a lista de países",
+     *     path="/api/country",
+     *     @OA\Response(response="200", description="Lista de países"),
+     * )
+     * 
+    */
+    /**
      * @param \Illuminate\Http\Request $request
      * @return \App\Http\Resources\Api\CountryCollection
      */
@@ -23,6 +33,35 @@ class CountryController extends Controller
         return new CountryCollection($countries);
     }
 
+
+    /**
+     * @OA\Post(
+     *     path="/api/country",
+     *     tags={"country.store"},
+     *     operationId="store",
+     *     summary="Adiciona um país",
+     *     description="Adiciona um país ao banco, é necessário informar o nome do país",
+     *     @OA\Parameter(
+     *         name="title",
+     *         in="path",
+     *         description="Informe o nome do país",
+     *         required=true,
+     *         @OA\Schema(
+     *             type="string",
+     *             maximum=200,
+     *             minimum=1
+     *         )
+     *     ),
+     *     @OA\Response(
+     *         response="200", 
+     *         description="Retorna o json com o país adicionado"
+     *     ),
+     *     @OA\Response(
+     *         response=405,
+     *         description="Requisição inválida",
+     *     )
+     * )
+     */
     /**
      * @param \App\Http\Requests\Api\CountryStoreRequest $request
      * @return \App\Http\Resources\Api\CountryResource
@@ -34,6 +73,37 @@ class CountryController extends Controller
         return new CountryResource($country);
     }
 
+    /**
+     * @OA\Get(
+     *     path="/api/country/{country}",
+     *     summary="Mostra um país pelo id",
+     *     description="Retorna um país pelo id",
+     *     operationId="show",
+     *     tags={"country.show"},
+     *     @OA\Parameter(
+     *         description="Id do país",
+     *         in="path",
+     *         name="id",
+     *         required=true,
+     *         @OA\Schema(
+     *           type="integer",
+     *           format="int64"
+     *         )
+     *     ),
+     *     @OA\Response(
+     *         response=200,
+     *         description="Sucesso"
+     *     ),
+     *     @OA\Response(
+     *         response="400",
+     *         description="ID inválido fornecido"
+     *     ),
+     *     @OA\Response(
+     *         response="404",
+     *         description="País não encontrado"
+     *     )
+     * )
+     */
     /**
      * @param \Illuminate\Http\Request $request
      * @param \App\Models\Country $country
