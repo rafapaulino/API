@@ -41,24 +41,23 @@ class StateController extends Controller
      *     operationId="store",
      *     summary="Adiciona um estado",
      *     description="Adiciona um estado ao banco, é necessário informar o nome do estado e o id do país",
-     *     @OA\Parameter(
-     *         name="title",
-     *         in="path",
-     *         description="Informe o nome do estado",
-     *         required=true,
-     *         @OA\Schema(
-     *             type="string",
-     *             maximum=200,
-     *             minimum=1
-     *         )
-     *     ),
-     *     @OA\Parameter(
-     *         name="id",
-     *         in="path",
-     *         description="Informe o id do país",
-     *         required=true,
-     *         @OA\Schema(
-     *             type="integer"
+     *     @OA\RequestBody(
+     *         description="Parâmetros para adicionar o estado",
+     *         @OA\MediaType(
+     *             mediaType="application/x-www-form-urlencoded",
+     *             @OA\Schema(
+     *                 type="object",
+     *                 @OA\Property(
+     *                     property="title",
+     *                     description="Nome do estado",
+     *                     type="string",
+     *                 ),
+     *                 @OA\Property(
+     *                     property="country_id",
+     *                     description="Id do país",
+     *                     type="string",
+     *                 )
+     *             )
      *         )
      *     ),
      *     @OA\Response(
@@ -92,7 +91,7 @@ class StateController extends Controller
      *     @OA\Parameter(
      *         description="Id do estado",
      *         in="path",
-     *         name="id",
+     *         name="state",
      *         required=true,
      *         @OA\Schema(
      *           type="integer"
@@ -123,15 +122,15 @@ class StateController extends Controller
         return new StateResource($state);
     }
 
-        /**
+    /**
      * @OA\Put(
-     *     path="/api/state",
+     *     path="/api/state/{state}",
      *     tags={"state.update"},
      *     operationId="update",
      *     @OA\Parameter(
      *         description="Id do estado",
      *         in="path",
-     *         name="id",
+     *         name="state",
      *         required=true,
      *         @OA\Schema(
      *           type="integer"
@@ -147,6 +146,11 @@ class StateController extends Controller
      *                     property="title",
      *                     description="Atualiza o nome do estado",
      *                     type="string",
+     *                 ),
+     *                 @OA\Property(
+     *                     property="country_id",
+     *                     description="Atualiza o país ao qual o estado pertence",
+     *                     type="integer",
      *                 )
      *             )
      *         )
@@ -185,7 +189,7 @@ class StateController extends Controller
      *     description="Recebe o id como integer e deleta o estado no banco",
      *     operationId="destroy",
      *     @OA\Parameter(
-     *         name="id",
+     *         name="state",
      *         in="path",
      *         required=true,
      *         description="ID do estado que será deletado",
