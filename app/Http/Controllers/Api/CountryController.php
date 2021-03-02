@@ -114,6 +114,50 @@ class CountryController extends Controller
         return new CountryResource($country);
     }
 
+
+    /**
+     * @OA\Put(
+     *     path="/api/country",
+     *     tags={"country.update"},
+     *     operationId="update",
+     *     @OA\Parameter(
+     *         description="Id do país",
+     *         in="path",
+     *         name="id",
+     *         required=true,
+     *         @OA\Schema(
+     *           type="integer",
+     *           format="int64"
+     *         )
+     *     ),
+     *     @OA\RequestBody(
+     *         description="Parâmetros para atualizar o país",
+     *         @OA\MediaType(
+     *             mediaType="application/x-www-form-urlencoded",
+     *             @OA\Schema(
+     *                 type="object",
+     *                 @OA\Property(
+     *                     property="title",
+     *                     description="Atualiza o nome do país",
+     *                     type="string",
+     *                 )
+     *             )
+     *         )
+     *     ),
+     *     @OA\Response(
+     *         response=400,
+     *         description="Parâmetro inválido"
+     *     ),
+     *     @OA\Response(
+     *         response=404,
+     *         description="País não encontrado"
+     *     ),
+     *     @OA\Response(
+     *         response=405,
+     *         description="Erro de validação"
+     *     )
+     * )
+     */
     /**
      * @param \App\Http\Requests\Api\CountryUpdateRequest $request
      * @param \App\Models\Country $country
@@ -126,6 +170,34 @@ class CountryController extends Controller
         return new CountryResource($country);
     }
 
+    /**
+     * @OA\Delete(
+     *     path="/api/country/{country}",
+     *     tags={"country.destroy"},
+     *     summary="Deleta o país pelo id",
+     *     description="Recebe o id como integer e deleta o país no banco",
+     *     operationId="destroy",
+     *     @OA\Parameter(
+     *         name="id",
+     *         in="path",
+     *         required=true,
+     *         description="ID do país que será deletado",
+     *         @OA\Schema(
+     *             type="integer",
+     *             format="int64",
+     *             minimum=1
+     *         )
+     *     ),
+     *     @OA\Response(
+     *         response=400,
+     *         description="Parâmetro inválido"
+     *     ),
+     *     @OA\Response(
+     *         response=404,
+     *         description="País não encontrado"
+     *     )
+     * ),
+     */
     /**
      * @param \Illuminate\Http\Request $request
      * @param \App\Models\Country $country

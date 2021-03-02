@@ -18,6 +18,51 @@
                     }
                 }
             },
+            "put": {
+                "tags": [
+                    "country.update"
+                ],
+                "operationId": "update",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Id do país",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "description": "Parâmetros para atualizar o país",
+                    "content": {
+                        "application/x-www-form-urlencoded": {
+                            "schema": {
+                                "properties": {
+                                    "title": {
+                                        "description": "Atualiza o nome do país",
+                                        "type": "string"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "400": {
+                        "description": "Parâmetro inválido"
+                    },
+                    "404": {
+                        "description": "País não encontrado"
+                    },
+                    "405": {
+                        "description": "Erro de validação"
+                    }
+                }
+            },
             "post": {
                 "tags": [
                     "country.store"
@@ -77,6 +122,190 @@
                     },
                     "404": {
                         "description": "País não encontrado"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "country.destroy"
+                ],
+                "summary": "Deleta o país pelo id",
+                "description": "Recebe o id como integer e deleta o país no banco",
+                "operationId": "destroy",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID do país que será deletado",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64",
+                            "minimum": 1
+                        }
+                    }
+                ],
+                "responses": {
+                    "400": {
+                        "description": "Parâmetro inválido"
+                    },
+                    "404": {
+                        "description": "País não encontrado"
+                    }
+                }
+            }
+        },
+        "/api/state": {
+            "get": {
+                "tags": [
+                    "state.index"
+                ],
+                "summary": "Retorna a lista de estados",
+                "description": "Retorna a lista de estados",
+                "responses": {
+                    "200": {
+                        "description": "Lista de estados"
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "state.update"
+                ],
+                "operationId": "update",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Id do estado",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "description": "Parâmetros para atualizar o estado",
+                    "content": {
+                        "application/x-www-form-urlencoded": {
+                            "schema": {
+                                "properties": {
+                                    "title": {
+                                        "description": "Atualiza o nome do estado",
+                                        "type": "string"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "400": {
+                        "description": "Parâmetro inválido"
+                    },
+                    "404": {
+                        "description": "estado não encontrado"
+                    },
+                    "405": {
+                        "description": "Erro de validação"
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "state.store"
+                ],
+                "summary": "Adiciona um estado",
+                "description": "Adiciona um estado ao banco, é necessário informar o nome do estado e o id do país",
+                "operationId": "store",
+                "parameters": [
+                    {
+                        "name": "title",
+                        "in": "path",
+                        "description": "Informe o nome do estado",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "maximum": 200,
+                            "minimum": 1
+                        }
+                    },
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Informe o id do país",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Retorna o json com o estado adicionado"
+                    },
+                    "405": {
+                        "description": "Requisição inválida"
+                    }
+                }
+            }
+        },
+        "/api/state/{state}": {
+            "get": {
+                "tags": [
+                    "state.show"
+                ],
+                "summary": "Mostra um estado pelo id",
+                "description": "Retorna um estado pelo id",
+                "operationId": "show",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Id do estado",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Sucesso"
+                    },
+                    "400": {
+                        "description": "ID inválido fornecido"
+                    },
+                    "404": {
+                        "description": "Estado não encontrado"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "state.destroy"
+                ],
+                "summary": "Deleta o estado pelo id",
+                "description": "Recebe o id como integer e deleta o estado no banco",
+                "operationId": "destroy",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID do estado que será deletado",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "400": {
+                        "description": "Parâmetro inválido"
+                    },
+                    "404": {
+                        "description": "estado não encontrado"
                     }
                 }
             }

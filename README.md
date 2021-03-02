@@ -17,9 +17,16 @@ Essa aplicação utiliza pacotes abaixo:
 
 ## Endpoints da API
 
-Todos os [endpoints](http://localhost/api/public/api/documentation) da api estão documentados com Swagger no endereço /api/documentation.
+Todos os [endpoints](http://localhost/api/public/api/documentation) da api estão documentados com Swagger no endereço {url do projeto}/api/documentation.
 
 ## Testes
 
 Para testar o projeto utilize:
 php artisan test
+
+## Para rodar o projeto execute
+
+composer install
+php artisan migrate
+php artisan db:seeder
+
